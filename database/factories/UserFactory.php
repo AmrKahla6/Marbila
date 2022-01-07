@@ -20,6 +20,7 @@ use Illuminate\Support\Str;
 $factory->define(User::class, function (Faker $faker) {
     $date   = rand(1262055681,1262055681);
     $date   = rand(1262055681,1262055681);
+    // $dateOfBirth = $faker->dateTimeThisCentury->format('Y-m-d');
     return [
         'name'            => $faker->name,
         'email'           => $faker->unique()->safeEmail,
@@ -27,10 +28,10 @@ $factory->define(User::class, function (Faker $faker) {
         'address'         => $faker->streetAddress . " " . $faker->city . " " . $faker->state,
         'jobTitle'        => $faker->jobTitle,
         'mobile'          => $faker->unique()->phoneNumber,
-        'dateOfBirth'     => $faker->dateTimeThisCentury->format('Y-m-d'),
-        'hireDate'        => $faker->dateTimeThisCentury->format('Y-m-d'),
-        'profileImage'    => rand(1,10) .'.png',
-        'created_at'          => date("Y-m-d H:i:s",$date),
-        'updated_at'          => date("Y-m-d H:i:s",$date),
+        'dateOfBirth'     => rand(1960,1980).'-'.rand(1,12).'-'.rand(1,30),
+        'hireDate'        => rand(2000,2020).'-'.rand(1,12).'-'.rand(1,30),
+        'profileImage'    => '1.png',
+        'created_at'      => date("Y-m-d H:i:s",$date),
+        'updated_at'      => date("Y-m-d H:i:s",$date),
     ];
 });

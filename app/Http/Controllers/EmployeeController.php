@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\User;
+use Illuminate\Http\Request;
+
+class EmployeeController extends Controller
+{
+    /**
+     * Get All Emoloyees
+     */
+    public function index(){
+        $employees = User::select('id','name','email','address')->paginate(10);
+        return view('welcome',compact('employees'));
+    }
+
+    /**
+     * Show Employee
+     * @param ID
+     */
+
+     public function show($id){
+         $employee = User::findOrFail($id);
+         return view('employee',compact('employee'));
+     }
+}

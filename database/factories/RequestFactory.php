@@ -11,10 +11,10 @@ $factory->define(Request::class, function (Faker $faker) {
     $date   = rand(1262055681,1262055681);
     return [
         'employee_id'   => $employee,
-        'vacationFrom'  => $faker->dateTimeThisCentury->format('Y-m-d'),
-        'vacationTo'    => $faker->dateTimeThisCentury->format('Y-m-d'),
+        'vacationFrom'  => '2021-'.rand(1,12).'-'.rand(1,30),
+        'vacationTo'    => '2022-'.rand(1,12).'-'.rand(1,30),
         'reason'        => $faker->text,
-        'created_at'          => date("Y-m-d H:i:s",$date),
-        'updated_at'          => date("Y-m-d H:i:s",$date),
+        'created_at'    => date("Y-m-d H:i:s",$date),
+        'updated_at'    => date("Y-m-d H:i:s",$date),
     ];
 });

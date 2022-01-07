@@ -28,6 +28,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function  getImagePathAttribute()
+    {
+      return asset('employees/'. $this->profileImage);
+    }// end of get Image Path
+
+
     /**
      * The attributes that should be cast to native types.
      *
