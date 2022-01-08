@@ -11,6 +11,8 @@
 <div class="container text-center">
     <div class="row">
  <!-- Optional JavaScript; choose one of the two! -->
+
+ @if (count($employees) != 0)
  <table class="table table-striped">
      <thead>
        <tr>
@@ -40,6 +42,9 @@
          @endforeach
      </tbody>
  </table>
+ @else
+ <h4>No Records</h4>
+@endif
  <div>{{$employees->links()}}</div>
 </div>
 </div>
