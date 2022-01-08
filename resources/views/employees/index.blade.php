@@ -11,7 +11,6 @@
 <div class="container text-center">
     <div class="row">
  <!-- Optional JavaScript; choose one of the two! -->
- @include('partials._session')
  <table class="table table-striped">
      <thead>
        <tr>
@@ -35,7 +34,7 @@
                     href="#exampleModal2" title="تعديل"><i class="fa fa-edit"></i>
                     Edit
                 </a>
-                <form method="post"action=""style="display: inline-block">
+                <form method="post" action="{{route('employee.destroy',$item->id)}}" style="display: inline-block">
                 @csrf()
                 @method('delete')
                 <button type="submit" class="btn btn-danger btn-sm delete"><i class="fa fa-trash"></i>Delete</button>

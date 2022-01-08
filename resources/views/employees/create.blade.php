@@ -5,9 +5,8 @@
     <div class="modal-header">
         <h6 class="modal-title">Add New Employee</h6>
     </div>
-    @include('partials._errors')
-    @include('partials._session')
     <form action="{{route('employee-store')}}" method="post" enctype="multipart/form-data">
+        @include('partials._errors')
         @csrf
         <div class="modal-body">
             <div class="form-group mb-2">

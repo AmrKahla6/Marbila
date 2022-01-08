@@ -23,6 +23,7 @@ class EmployeeRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
             'name'         => 'required|max:50|min:3',
             'email'        => 'required|unique:users,email',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Storage;
 use App\User;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
@@ -97,4 +98,18 @@ class EmployeeController extends Controller
 
          return view('employees.show',compact(['employee','years','months','days','vacations_balance','vacation','holidays']));
      }
+
+     /**
+      * Delete Employee
+      */
+
+      public function destroy($id){
+          $employee = User::find($id);
+          if($employee->profileImage != '1.png'){
+              Storage::disk('uploads')->delete('' . $employee->profileImage);
+          }
+          $employee->delete();
+          session()->flash('success','Employee Deleted successfuly');
+          return redirect()->back();
+      }
 }

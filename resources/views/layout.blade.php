@@ -29,6 +29,8 @@
             <a class="nav-link {{is_active('vaction-requests')}}" href="{{route('vaction-requests')}}">Vaction Requests</a>
         </li>
     </ul>
+    @include('partials._session')
+
     @yield('content')
 
     <!-- Optional JavaScript; choose one of the two! -->
@@ -46,5 +48,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
     <script src="{{asset('image_preview.js')}}"></script>
 
+    @yield('secripts')
   </body>
 </html>
