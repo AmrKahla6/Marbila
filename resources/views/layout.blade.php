@@ -11,6 +11,21 @@
     <title>Hello, world!</title>
   </head>
   <body>
+
+    <ul class="nav">
+
+        <li class="nav-item">
+          <a class="nav-link {{is_active('employees')}}" aria-current="page" href="{{route('employees')}}"> Employees </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link {{is_active('vactions')}}" href="{{route('vactions')}}">Vactions</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link {{is_active('vaction-requests')}}" href="{{route('vaction-requests')}}">Vaction Requests</a>
+        </li>
+    </ul>
     @yield('content')
 
     <!-- Optional JavaScript; choose one of the two! -->

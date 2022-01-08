@@ -13,5 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'EmployeeController@index')->name('employee');
+//Employees Routes
+Route::get('/', 'EmployeeController@index')->name('employees');
 Route::get('Employee/{id}', 'EmployeeController@show')->name('employee.show');
+
+//Vaction Routes
+Route::get('vaction', 'VactionController@index')->name('vactions');
+
+//Vacation Requests Routes
+Route::get('vacation-requests', 'VacationReqestsController@index')->name('vaction-requests');

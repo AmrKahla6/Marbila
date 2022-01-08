@@ -12,7 +12,7 @@ class EmployeeController extends Controller
      */
     public function index(){
         $employees = User::select('id','name','email','address')->paginate(10);
-        return view('welcome',compact('employees'));
+        return view('employees.index',compact('employees'));
     }
 
     /**
@@ -22,6 +22,6 @@ class EmployeeController extends Controller
 
      public function show($id){
          $employee = User::findOrFail($id);
-         return view('employee',compact('employee'));
+         return view('employees.show',compact('employee'));
      }
 }

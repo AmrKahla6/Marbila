@@ -2,7 +2,7 @@
 
 
 use App\User;
-use App\Request;
+use App\VactionRequest;
 use App\Vacation;
 use Illuminate\Database\Seeder;
 
@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         // $this->call(UserSeeder::class);
         factory(User::class, 20)->create();
         factory(Vacation::class, 50)->create();
-        factory(Request::class, 50)->create();
+        factory(VactionRequest::class, 50)->create();
     }
 }

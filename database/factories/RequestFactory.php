@@ -3,10 +3,10 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\User;
-use App\Request;
+use App\VactionRequest;
 use Faker\Generator as Faker;
 
-$factory->define(Request::class, function (Faker $faker) {
+$factory->define(VactionRequest::class, function (Faker $faker) {
     $employee = User::all()->random();
     $date   = rand(1262055681,1262055681);
     return [
