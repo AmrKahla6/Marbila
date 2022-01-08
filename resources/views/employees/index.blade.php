@@ -29,11 +29,7 @@
              <td>{{$item->email}}</td>
              <td>{{$item->address}}</td>
              <td>
-                <a class="modal-effect btn btn-info btn-sm" data-effect="effect-scale"
-                    data-toggle="modal"
-                    href="#exampleModal2" title="تعديل"><i class="fa fa-edit"></i>
-                    Edit
-                </a>
+                <a class="btn btn-info btn-sm" href="{{route('employee.edit' , $item->id)}}"><i class="fa fa-edit"></i>Edit</a>
                 <form method="post" action="{{route('employee.destroy',$item->id)}}" style="display: inline-block">
                 @csrf()
                 @method('delete')

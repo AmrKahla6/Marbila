@@ -7,7 +7,8 @@ use App\User;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
-use App\Http\Requests\EmployeeRequest;
+use App\Http\Requests\Employee\StoreRequest;
+use App\Http\Requests\Employee\UpdateRequest;
 
 class EmployeeController extends Controller
 {
@@ -31,7 +32,7 @@ class EmployeeController extends Controller
       * Store Employee
      */
 
-     public function store(EmployeeRequest $request){
+     public function store(StoreRequest $request){
         try {
             $validated = $request->validated();
             $data = $request->except(['profileImage']);
@@ -98,6 +99,53 @@ class EmployeeController extends Controller
 
          return view('employees.show',compact(['employee','years','months','days','vacations_balance','vacation','holidays']));
      }
+
+     /**
+      * Edit Blade
+      */
+
+     public function edit($id){
+         $employee = User::find($id);
+         return view('employees.edit',compact(['employee']));
+     }
+
+     /**
+      * Update Employee
+      */
+
+      public function update(UpdateRequest $request, $id){
+        try {
+            //Validate Date
+            $validated = $request->validated();
+
+            // Find Employee
+            $employee = User::find($id);
+            $data = $request->except(['profileImage']);
+
+
+            //Uplpad Image
+            if ($request->profileImage) {
+
+                //Delete Old Image from storage
+                if ($employee->profileImage != '1.png') {
+                    Storage::disk('uploads')->delete('' . $employee->profileImage);
+                }
+
+                Image::make($request->profileImage)->resize(300, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })
+                    ->save(public_path('employees/' . $request->profileImage->hashName()));
+                $data['profileImage'] = $request->profileImage->hashName();
+            }
+
+
+            $employee->update($data);
+            session()->flash('success',('Employee updated succesfuly'));
+            return redirect()->route('employees');
+            } catch(\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+      }
 
      /**
       * Delete Employee

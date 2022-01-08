@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Employee;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class EmployeeRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,13 +24,12 @@ class EmployeeRequest extends FormRequest
      */
     public function rules()
     {
-
         return [
             'name'         => 'required|max:50|min:3',
-            'email'        => 'required|unique:users,email',
+            'email'        => ['required', Rule::unique('users')->ignore($this->id)],
             'address'      => 'required',
             'jobTitle'     => 'required',
-            'mobile'       => 'required|unique:users,mobile',
+            'mobile'       =>  ['required', Rule::unique('users')->ignore($this->id)],
             'dateOfBirth'  => 'required|date|before:-18 years|before:hireDate|date_format:Y-m-d',
             'hireDate'     => 'required|date_format:Y-m-d|after:dateOfBirth',
             'profileImage' => 'nullable'
