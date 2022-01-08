@@ -3,6 +3,9 @@
 @section('content')
 
 <center> <h3 class="mt-3">Vacation Requests</h3></center>
+<div class="col-md-4 m-3">
+    <a href="{{route('vaction-requests-create')}}" class="btn btn-primary"><i class="fa fa-plus"></i>Add New Request</a>
+</div>
 <pre></pre>
 <div class="container text-center">
     <div class="row">
@@ -32,7 +35,7 @@
                     href="#exampleModal2" title="تعديل"><i class="fa fa-edit"></i>
                     Edit
                 </a>
-                <form method="post"action=""style="display: inline-block">
+                <form method="post"action="{{route('requests.destroy',$item->id)}}"style="display: inline-block">
                 @csrf()
                 @method('delete')
                 <button type="submit" class="btn btn-danger btn-sm delete"><i class="fa fa-trash"></i>Delete</button>

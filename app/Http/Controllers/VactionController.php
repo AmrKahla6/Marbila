@@ -35,7 +35,7 @@ class VactionController extends Controller
      }
 
     public function destroy($id){
-        $vacation = Vacation::find($id);
+        return $vacation = Vacation::find($id);
         $vacation->delete();
         session()->flash('success','Vacation Deleted successfuly');
         return redirect()->back();
