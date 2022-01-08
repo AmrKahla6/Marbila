@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+use App\Http\Requests\EmployeeRequest;
 
 class EmployeeController extends Controller
 {
@@ -11,9 +14,44 @@ class EmployeeController extends Controller
      * Get All Emoloyees
      */
     public function index(){
-        $employees = User::select('id','name','email','address')->paginate(10);
+        $employees = User::select('id','name','email','address')->latest()->paginate(10);
         return view('employees.index',compact('employees'));
     }
+
+    /**
+     * Create New Employee
+     */
+
+     public function create(){
+         return view('employees.create');
+     }
+
+     /**
+      * Store Employee
+     */
+
+     public function store(EmployeeRequest $request){
+        try {
+            $validated = $request->validated();
+            $data = $request->except(['profileImage']);
+            if ($request->profileImage) {
+                Image::make($request->profileImage)->resize(300, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })
+                    ->save(public_path('employees/' . $request->profileImage->hashName()));
+                $data['profileImage'] = $request->profileImage->hashName();
+             }else{
+                $data['profileImage'] = '1.png';
+             }
+             $employee = User::create($data);
+            session()->flash('success','Employee Added successfuly');
+            return redirect()->route('employees');
+        } catch(\Exception $e) {
+            session()->flash('error', ('Error'));
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+     }
+
 
     /**
      * Show Employee

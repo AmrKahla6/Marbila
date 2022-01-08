@@ -3,5 +3,5 @@ namespace App\Traits;
 
 trait GeneralTrait
 {
-  //
+
 }

@@ -2,11 +2,17 @@
 
 @section('content')
 
-<center> <h3 class="mt-3">Employees</h3></center>
+    <center> <h3 class="mt-3">Employees</h3></center>
+
+    <div class="col-md-4 m-3">
+        <a href="{{route('employee-create')}}" class="btn btn-primary"><i class="fa fa-plus"></i>Add New Employee</a>
+    </div>
 <pre></pre>
 <div class="container text-center">
     <div class="row">
  <!-- Optional JavaScript; choose one of the two! -->
+ @include('partials._errors')
+ @include('partials._session')
  <table class="table table-striped">
      <thead>
        <tr>
