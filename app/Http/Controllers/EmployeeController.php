@@ -16,7 +16,10 @@ class EmployeeController extends Controller
      * Get All Emoloyees
      */
     public function index(){
+        //Select this fileds from employee order by latest
         $employees = User::select('id','name','email','address')->latest()->paginate(10);
+
+        //Send data to blade
         return view('employees.index',compact('employees'));
     }
 
@@ -25,6 +28,7 @@ class EmployeeController extends Controller
      */
 
      public function create(){
+         //create blade to can store new employee
          return view('employees.create');
      }
 
@@ -34,6 +38,8 @@ class EmployeeController extends Controller
 
      public function store(StoreRequest $request){
         try {
+
+            //Validate data first
             $validated = $request->validated();
             $data = $request->except(['profileImage']);
 
@@ -62,7 +68,11 @@ class EmployeeController extends Controller
 
              // Create New Employee
              $employee = User::create($data);
+
+             //Message for success operation
             session()->flash('success','Employee Added successfuly');
+
+            //Return back to employee page
             return redirect()->route('employees');
         } catch(\Exception $e) {
             session()->flash('error', ('Error'));
@@ -77,7 +87,11 @@ class EmployeeController extends Controller
      */
 
      public function show($id){
+
+        //Find employee
          $employee = User::findOrFail($id);
+
+         //How many year he work to determines days of vacation
          $diff = abs(strtotime($employee->hireDate) - strtotime(date("Y-m-d")));
 
          //Hiring Format Date
@@ -85,9 +99,12 @@ class EmployeeController extends Controller
          $months  = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
          $days    = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
 
+         //if work years > 10 years his vacation 20 day
+
          if($years >= 10){
              $vacations_balance = 30;
          }else{
+             //else his vacation 21
              $vacations_balance = 21;
          }
 
@@ -105,6 +122,8 @@ class EmployeeController extends Controller
       */
 
      public function edit($id){
+
+        //Find employee to edit
          $employee = User::find($id);
          return view('employees.edit',compact(['employee']));
      }
@@ -139,6 +158,7 @@ class EmployeeController extends Controller
             }
 
 
+            //Update employee
             $employee->update($data);
             session()->flash('success',('Employee updated succesfuly'));
             return redirect()->route('employees');
@@ -152,11 +172,18 @@ class EmployeeController extends Controller
       */
 
       public function destroy($id){
+
+        //Find employee to delete
           $employee = User::find($id);
+
+          //if his image != '1.png' delete image
           if($employee->profileImage != '1.png'){
               Storage::disk('uploads')->delete('' . $employee->profileImage);
           }
+
+          //delete emoloyee
           $employee->delete();
+
           session()->flash('success','Employee Deleted successfuly');
           return redirect()->back();
       }
