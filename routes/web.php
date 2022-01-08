@@ -24,6 +24,8 @@ Route::delete('employee/{id}/delete', 'EmployeeController@destroy')->name('emplo
 
 //Vaction Routes
 Route::get('vaction', 'VactionController@index')->name('vactions');
+Route::post('vaction/store', 'VactionController@store')->name('vactions.store');
+Route::delete('vaction/{id}/delete', 'VactionController@destroy')->name('vaction.destroy');
 
 //Vacation Requests Routes
 Route::get('vacation-requests', 'VacationReqestsController@index')->name('vaction-requests');

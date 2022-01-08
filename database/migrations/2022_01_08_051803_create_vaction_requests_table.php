@@ -20,6 +20,8 @@ class CreateVactionRequestsTable extends Migration
             $table->date('vacationFrom')->nullable();
             $table->date('vacationTo')->nullable();
             $table->text('reason')->nullable();
+            //if type = 0 "annualVacation" else "suddenVacation"
+            $table->boolean('type')->nullable();
             $table->timestamps();
         });
     }

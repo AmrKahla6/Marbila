@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UserSeeder::class);
         factory(User::class, 20)->create();
-        factory(Vacation::class, 50)->create();
+        factory(Vacation::class, 7)->create();
         factory(VactionRequest::class, 50)->create();
     }
 }

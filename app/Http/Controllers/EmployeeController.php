@@ -85,7 +85,7 @@ class EmployeeController extends Controller
          $months  = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
          $days    = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
 
-         if($years >= 30){
+         if($years >= 10){
              $vacations_balance = 30;
          }else{
              $vacations_balance = 21;

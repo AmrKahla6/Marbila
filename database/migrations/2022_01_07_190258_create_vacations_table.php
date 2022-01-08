@@ -16,10 +16,7 @@ class CreateVacationsTable extends Migration
         Schema::create('vacations', function (Blueprint $table) {
             $table->id();
             $table->date('holidayDate')->nullable();
-            $table->string('holidayName', 100)->nullable();
-
-            //if type = 0 "annualVacation" else "suddenVacation"
-            $table->boolean('type')->nullable();
+            $table->string('holidayName')->nullable();
             $table->timestamps();
         });
     }
