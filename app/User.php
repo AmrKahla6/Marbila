@@ -2,9 +2,10 @@
 
 namespace App;
 
+use App\VactionRequest;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -27,6 +28,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * User Request Relationship
+     */
+
+    public function requests(){
+        return $this->hasMany(VactionRequest::class, 'employee_id');
+    }
 
     public function  getImagePathAttribute()
     {
