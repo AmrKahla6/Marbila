@@ -30,11 +30,6 @@
              <td>{{$item->vacationTo}}</td>
              <td>{{substr($item->reason,0,50)}}</td>
              <td>
-                <a class="modal-effect btn btn-info btn-sm" data-effect="effect-scale"
-                    data-toggle="modal"
-                    href="#exampleModal2" title="تعديل"><i class="fa fa-edit"></i>
-                    Edit
-                </a>
                 <form method="post"action="{{route('requests.destroy',$item->id)}}"style="display: inline-block">
                 @csrf()
                 @method('delete')

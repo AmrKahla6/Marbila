@@ -12,7 +12,7 @@ class VactionController extends Controller
      * Show all vacations
      */
     public function index(){
-        $vactions = Vacation::select('id','holidayDate','holidayName')->paginate(10);
+        $vactions = Vacation::select('id','holidayDate','holidayName')->latest()->paginate(10);
         return view('vactions.index',compact('vactions'));
     }
 

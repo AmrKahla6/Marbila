@@ -18,6 +18,7 @@
                 </select>
             </div>
 
+            {{-- Employee Information --}}
             <div class="form-group mb-2" style="display: none;" id="classVaction">
                 <span style="color:rgb(209, 7, 7)">Number of vacation he was taken (Requests)</span>
                 <div class="user-name" id="countVacation"><span class="text-muted f9">Days</span></div>
@@ -30,31 +31,39 @@
             </div>
 
             <div class="form-group mb-2">
-                <span>vacationFrom</span>
-                <input type="date" class="form-control" name="vacationFrom" value="{{ old('vacationFrom') }}" id="hireDate" required>
+                <span>Vacation From</span>
+                <input type="date" class="form-control" name="vacationFrom" value="{{ old('vacationFrom') }}" id="vacationFrom" required>
             </div>
 
             <div class="form-group mb-2">
-                <span>vacationFrom</span>
-                <input type="date" class="form-control" name="vacationTo" value="{{ old('vacationTo') }}" id="hireDate" required>
+                <span>Vacation To</span>
+                <input type="date" class="form-control" name="vacationTo" value="{{ old('vacationTo') }}" id="vacationTo" required>
             </div>
 
-
-
             <div class="form-group mb-2">
-                <span>vacationFrom</span>
-                <input type="text" class="form-control" name="reason" value="{{ old('reason') }}" id="hireDate" required>
+                <span>Reason</span>
+                <input type="text" class="form-control" name="reason" value="{{ old('Reason') }}" placeholder="Type your reason" id="Reason" required>
             </div>
 
             <div class="form-group mb-2">
                 <span>Type</span>
-                <input type="text" class="form-control" name="type" value="{{ old('type') }}" id="hireDate" required>
+                <select name="type" id="" class="form-control">
+                    <option value="" selected disabled>Choose Type</option>
+                    <option value="0">Annual vacation</option>
+                    <option value="1">Sudden vacation</option>
+                </select>
             </div>
 
+        </div>
+        <div class="modal-footer">
+            <button class="btn ripple btn-primary" type="submit" id="AddUnits"> Save </button>
         </div>
     </form>
 </div>
 @endsection
+
+
+
 @section('scripts')
     <script>
 
