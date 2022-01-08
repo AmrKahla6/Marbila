@@ -34,6 +34,20 @@ class EmployeeController extends Controller
         try {
             $validated = $request->validated();
             $data = $request->except(['profileImage']);
+
+            //Validate hiring date
+            $diff = abs(strtotime($request->hireDate) - strtotime($request->dateOfBirth));
+            $years   = floor($diff / (365*60*60*24));
+
+
+            // IF diffrent betweem birthday and hireing date > 18 years redirct back
+            if($years < 18){
+                session()->flash('error','The Diffrent betweem birthday and hireing date must be bigger than 18 years');
+                return redirect()->back();
+            }
+
+
+            //Save Employee Image
             if ($request->profileImage) {
                 Image::make($request->profileImage)->resize(300, null, function ($constraint) {
                     $constraint->aspectRatio();
@@ -43,6 +57,8 @@ class EmployeeController extends Controller
              }else{
                 $data['profileImage'] = '1.png';
              }
+
+             // Create New Employee
              $employee = User::create($data);
             session()->flash('success','Employee Added successfuly');
             return redirect()->route('employees');

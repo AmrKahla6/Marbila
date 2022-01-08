@@ -11,7 +11,6 @@
 <div class="container text-center">
     <div class="row">
  <!-- Optional JavaScript; choose one of the two! -->
- @include('partials._errors')
  @include('partials._session')
  <table class="table table-striped">
      <thead>

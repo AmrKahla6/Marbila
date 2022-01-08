@@ -29,8 +29,8 @@ class EmployeeRequest extends FormRequest
             'address'      => 'required',
             'jobTitle'     => 'required',
             'mobile'       => 'required|unique:users,mobile',
-            'dateOfBirth'  => 'required|date|before:-18 years',
-            'hireDate'     => 'required',
+            'dateOfBirth'  => 'required|date|before:-18 years|before:hireDate|date_format:Y-m-d',
+            'hireDate'     => 'required|date_format:Y-m-d|after:dateOfBirth',
             'profileImage' => 'nullable'
         ];
     }
@@ -55,6 +55,7 @@ class EmployeeRequest extends FormRequest
             'dateOfBirth.before'    => "Employee  must be bigger than 18 years old",
 
             'hireDate.required'     => "Employee hire date is required",
+            'hireDate.after'        => "Employee hire date must after birthday",
 
             'profileImage.nullable' => "Employee profile image is not required",
         ];
